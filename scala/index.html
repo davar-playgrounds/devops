@@ -645,16 +645,18 @@ trait Applicative[F[_]] extends Functor[F] {
 <p><em>What are inhabitants of a type?</em></p>
 <p>Inhabitants of a type are values for that types. Algebraig Data Types can be thought of in terms of regular algebraic equations and its result gives the number of inhabitants</p>
 <ul>
-<li>sum types: <code>Either A B</code> or <code>A or B</code> corresponds to the equation <code>A + B</code></li>
+<li>sum types: <code>Either[A, B]</code> or <code>A or B</code> corresponds to the equation <code>A + B</code></li>
 <li>products types: <code>(A, B)</code> (Tuple2) or <code>A and B</code> corresponds to the equation <code>A * B</code></li>
 <li>exponentiation: <code>A -&gt; B</code> (Function1) corresponds to the equation <code>B^A</code> e.g. <code>Boolean -&gt; Boolean</code> is <code>2^2</code></li>
 <li>the <code>Unit</code> data type corresponds to the value 1</li>
 <li>the <code>Void</code> data type corresponds to the value 0</li>
 </ul>
 <p><em>What's the difference between monomorphic and polymorphic?</em></p>
-<p>Only by knowing the types
-* Given a monomorphic signature <code>List[Int] -&gt; List[Int]</code>, there are too many possible implementations to say what the function does
-* Given a polymorphic/parametrized type signature <code>List[A] -&gt; List[A]</code> it's proven that all elements in the result appear in the input which restricts the possible implementations</p>
+<p>Only by knowing the types</p>
+<ul>
+<li>Given a monomorphic signature <code>List[Int] -&gt; List[Int]</code>, there are too many possible implementations to say what the function does</li>
+<li>Given a polymorphic/parametrized type signature <code>List[A] -&gt; List[A]</code> it's proven that all elements in the result appear in the input which restricts the possible implementations</li>
+</ul>
 <!--
 
 *What is an IO Monad?*
