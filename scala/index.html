@@ -636,17 +636,21 @@ trait Applicative[F[_]] extends Functor[F] {
 <li><a href="https://alvinalexander.com/scala/fp-book/benefits-of-functional-programming">Other benefits</a></li>
 </ul>
 <p><em>What is an effectful computation?</em></p>
-<p>In functional programming, an effect adds some capabilities to a computation. An effect is modeled usually in the form of a <strong>type constructor</strong> that constructs types with these additional capabilities
-* <code>List[A]</code> adds the effect of aggregation on A
-* <code>Option[A]</code> adds the capability of optionality for the type A
-* <code>Try[A]</code> models the effects of exceptions</p>
+<p>In functional programming, an effect adds some capabilities to a computation. An effect is modeled usually in the form of a <strong>type constructor</strong> that constructs types with these additional capabilities</p>
+<ul>
+<li><code>List[A]</code> adds the effect of aggregation on A</li>
+<li><code>Option[A]</code> adds the capability of optionality for the type A</li>
+<li><code>Try[A]</code> models the effects of exceptions</li>
+</ul>
 <p><em>What are inhabitants of a type?</em></p>
-<p>Inhabitants of a type are values for that types. Algebraig Data Types can be thought of in terms of regular algebraic equations and its result gives the number of inhabitants
-* sum types: <code>Either A B</code> or <code>A or B</code> corresponds to the equation <code>A + B</code>
-* products types: <code>(A, B)</code> (Tuple2) or <code>A and B</code> corresponds to the equation <code>A * B</code>
-* exponentiation: <code>A -&gt; B</code> (Function1) corresponds to the equation <code>B^A</code> e.g. <code>Boolean -&gt; Boolean</code> is <code>2^2</code>
-* the <code>Unit</code> data type corresponds to the value 1
-* the <code>Void</code> data type corresponds to the value 0</p>
+<p>Inhabitants of a type are values for that types. Algebraig Data Types can be thought of in terms of regular algebraic equations and its result gives the number of inhabitants</p>
+<ul>
+<li>sum types: <code>Either A B</code> or <code>A or B</code> corresponds to the equation <code>A + B</code></li>
+<li>products types: <code>(A, B)</code> (Tuple2) or <code>A and B</code> corresponds to the equation <code>A * B</code></li>
+<li>exponentiation: <code>A -&gt; B</code> (Function1) corresponds to the equation <code>B^A</code> e.g. <code>Boolean -&gt; Boolean</code> is <code>2^2</code></li>
+<li>the <code>Unit</code> data type corresponds to the value 1</li>
+<li>the <code>Void</code> data type corresponds to the value 0</li>
+</ul>
 <p><em>What's the difference between monomorphic and polymorphic?</em></p>
 <p>Only by knowing the types
 * Given a monomorphic signature <code>List[Int] -&gt; List[Int]</code>, there are too many possible implementations to say what the function does
