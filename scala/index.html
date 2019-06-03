@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="niqdev">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Scala - DevOps</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Scala";
+    var mkdocs_page_input_path = "scala.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-68888222-4', 'niqdev.github.io');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> DevOps</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../linux/">Linux</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../docker/">Docker</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ansible/">Ansible</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../cassandra/">Cassandra</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../zookeeper/">ZooKeeper</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../kafka/">Kafka</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../hadoop/">Hadoop</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../kubernetes/">Kubernetes</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../jvm/">JVM</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Scala</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#scala">Scala</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#resources">Resources</a></li>
+        
+            <li><a class="toctree-l3" href="#faqs">FAQs</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../system-design/">System Design</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../other/">Other</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">DevOps</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Scala</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/niqdev/devops/edit/master/docs/scala.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="scala">Scala</h1>
+<h2 id="resources">Resources</h2>
+<p><strong>Fundamentals</strong></p>
+<ul>
+<li><a href="https://amzn.to/2OAAgc3">Programming in Scala</a> (2016)(3rd) by Martin Odersky, Lex Spoon, and Bill Venners (Book)</li>
+<li><a href="https://amzn.to/2Oy7QiS">Scala High Performance Programming</a> (2016) by Vincent Theron, Michael Diamant (Book)</li>
+<li>
+<p><a href="https://amzn.to/2vsTesn">Akka in Action</a> (2016) by Raymond Roestenburg, Rob Bakker, and Rob Williams (Book)</p>
+</li>
+<li>
+<p><a href="https://docs.scala-lang.org/tour/tour-of-scala.html">Tour of Scala</a></p>
+</li>
+<li><a href="https://twitter.github.io/scala_school">Twitter Scala School</a></li>
+<li><a href="http://scalapuzzlers.com">Scala Puzzlers</a></li>
+<li><a href="http://aperiodic.net/phil/scala/s-99">S-99: Ninety-Nine Scala Problems</a></li>
+<li><a href="https://www.scala-exercises.org">Scala Exercises</a></li>
+<li><a href="https://pavelfatin.com/scala-for-project-euler">Scala for Project Euler</a></li>
+<li><a href="https://docs.scala-lang.org/overviews/collections/introduction.html">Scala Collections</a></li>
+<li><a href="https://docs.scala-lang.org/overviews/collections/performance-characteristics.html">Scala Collections performance characteristics</a></li>
+<li><a href="https://danielwestheide.com/scala/neophytes.html">The Neophyte's Guide to Scala</a></li>
+<li><a href="http://blog.originate.com/blog/2016/08/10/cheat-codes-for-contravariance-and-covariance">Cheat Codes for Contravariance and Covariance</a></li>
+<li><a href="http://blog.kamkor.me/Covariance-And-Contravariance-In-Scala">Covariance and contravariance in Scala</a></li>
+<li><a href="https://blog.codecentric.de/en/2015/03/scala-type-system-parameterized-types-variances-part-1">The Scala Type System: Parameterized Types and Variances</a></li>
+</ul>
+<p><strong>FP readings</strong></p>
+<ul>
+<li><a href="https://leanpub.com/fpmortals">Functional Programming for Mortals with Scalaz</a> (2018) by Sam Halliday (Book)</li>
+<li><a href="https://amzn.to/2OCFpQG">Functional Programming in Scala</a> (2014) by Paul Chiusano and Runar Bjarnason (Book)</li>
+<li><a href="https://amzn.to/2OCFROS">Functional Programming, Simplified</a> (2017) by Alvin Alexander (Book)</li>
+<li><a href="https://underscore.io/books/scala-with-cats">Scala with Cats</a> (Book)</li>
+<li><a href="https://underscore.io/books/shapeless-guide">The Type Astronaut's Guide to Shapeless</a> (Book)</li>
+<li><a href="https://www.cs.kent.ac.uk/people/staff/dat/miranda/whyfp90.pdf">Why Functional Programming Matters</a> (Paper)</li>
+<li><a href="https://www.cs.ox.ac.uk/jeremy.gibbons/publications/iterator.pdf">The Essence of the Iterator Pattern</a> (Paper)</li>
+<li><a href="http://www.staff.city.ac.uk/~ross/papers/Applicative.pdf">Applicative programming with effects</a> (Paper)</li>
+<li><a href="http://functorial.com/stack-safety-for-free/index.pdf">Stack Safety for Free</a> (Paper)</li>
+<li><a href="http://blog.higher-order.com/assets/trampolines.pdf">Stackless Scala With Free Monads</a> (Paper)</li>
+<li><a href="http://ropas.snu.ac.kr/~bruno/papers/TypeClasses.pdf">Type Classes as Objects and Implicits</a> (Paper)</li>
+<li><a href="http://okmij.org/ftp/tagless-final/JFP.pdf">Finally Tagless, Partially Evaluated</a> (Paper)</li>
+<li><a href="http://okmij.org/ftp/tagless-final/course/lecture.pdf">Typed Tagless Final Interpreters</a> (Paper)</li>
+<li><a href="https://github.com/tpolecat/cats-infographic">Cats Infographic</a></li>
+</ul>
+<p><strong>FP resources</strong></p>
+<ul>
+<li><a href="https://pragprog.com/magazines/2013-01/functional-programming-basics">Functional Programming Basics</a></li>
+<li><a href="http://www.defmacro.org/2006/06/19/fp.html">Functional Programming For The Rest of Us</a></li>
+<li><a href="https://www.fpcomplete.com/blog/2012/04/the-downfall-of-imperative-programming">The Downfall of Imperative Programming</a></li>
+<li><a href="http://yosefk.com/blog/parallelism-and-concurrency-need-different-tools.html">Parallelism and concurrency need different tools</a></li>
+<li><a href="https://ktoso.github.io/scala-types-of-types">Scala's Types of Types</a></li>
+<li>
+<p>Incremental Purity [<a href="https://git.io/fp017">slide</a>|<a href="https://git.io/fp01d">code</a>] (Meetup)</p>
+</li>
+<li>
+<p><a href="https://alvinalexander.com/scala/fp-book/algebraic-data-types-adts-in-scala">Algebraic Data Types in Scala</a></p>
+</li>
+<li><a href="https://merrigrove.blogspot.com/2011/12/another-introduction-to-algebraic-data.html">What the Heck are Algebraic Data Types?</a></li>
+<li><a href="https://underscore.io/blog/posts/2015/06/04/more-on-sealed.html">More on Sealed Traits in Scala</a></li>
+<li>
+<p><a href="http://blog.bruchez.name/2015/11/generalized-type-constraints-in-scala.html">Generalized type constraints in Scala (without a PhD)</a></p>
+</li>
+<li>
+<p><a href="https://darrenjw.wordpress.com/2016/04/15/first-steps-with-monads-in-scala">First steps with monads in Scala</a></p>
+</li>
+<li><a href="https://medium.com/@sinisalouc/demystifying-the-monad-in-scala-cc716bb6f534">Demystifying the Monad in Scala</a></li>
+<li><a href="https://www.becompany.ch/en/blog/2016/11/08/cooking-with-monads">Cooking with Monads</a></li>
+<li><a href="http://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html">Functors, Applicatives, And Monads In Pictures</a></li>
+<li>
+<p><a href="https://earldouglas.com/talks/scala-cats/tutorial.html">Hands-on category theory</a></p>
+</li>
+<li>
+<p><a href="https://benmosheron.gitlab.io/blog/2018/12/24/functional-composition.html">Functional Composition</a></p>
+</li>
+<li><a href="https://blog.scalac.io/exploring-tagless-final.html">Exploring Tagless Final pattern for extensive and readable Scala code</a></li>
+<li><a href="https://www.becompany.ch/en/blog/2018/06/21/tagless-final">Structuring Functional Programs with Tagless Final</a></li>
+<li><a href="https://softwaremill.com/free-tagless-compared-how-not-to-commit-to-monad-too-early">Free and tagless compared</a></li>
+<li><a href="http://www.vlachjosef.com/tagged-types-introduction">Scala Tagged types</a></li>
+<li>Modern Functional Programming [<a href="http://degoes.net/articles/modern-fp">part-1</a>|<a href="http://degoes.net/articles/modern-fp-part-2">part-2</a>]</li>
+<li><a href="https://speakerdeck.com/markus1189/functional-web-services-with-final-encoding">Functional Web Services with Final Encoding</a></li>
+<li><a href="https://typelevel.org/blog/2018/05/09/tagless-final-streaming.html">Tagless Final algebras and Streaming</a></li>
+<li><a href="https://www.reddit.com/r/scala/comments/90jk2u/mtlstyle_programming/e2qze0c">MTL-style program composition</a></li>
+<li><a href="https://underscore.io/blog/posts/2015/04/28/monadic-io-laziness-makes-you-free.html">Monadic IO: Laziness Makes You Free</a></li>
+<li><a href="https://typelevel.org/blog/2017/05/02/io-monad-for-cats.html">An IO monad for cats</a></li>
+<li><a href="https://github.com/jdegoes/lambdaconf-2014-introgame">Intro to Functional Game Programming</a></li>
+<li><a href="https://www.slideshare.net/LukaJacobowitz/advanced-tagless-final-saying-farewell-to-free">Advanced Tagless Final - Saying Farewell to Free</a></li>
+<li><a href="http://www.beyondthelines.net/programming/introduction-to-tagless-final">Introduction to Tagless final</a></li>
+<li>
+<p><a href="https://oleksandrmanzyuk.wordpress.com/2014/06/18/from-object-algebras-to-finally-tagless-interpreters-2/">From Object Algebras to Finally Tagless Interpreters</a></p>
+</li>
+<li>
+<p><a href="https://softwaremill.com/free-monads">Free monads - what? and why?</a></p>
+</li>
+<li><a href="https://github.com/kenbot/free">Free Monad examples</a></li>
+<li><a href="https://blog.scalac.io/2016/06/02/overview-of-free-monad-in-cats.html">Overview of free monad in cats</a></li>
+<li><a href="https://typelevel.org/blog/2018/04/13/rethinking-monaderror.html">Rethinking MonadError</a></li>
+<li>
+<p><a href="http://www.marcoyuen.com/articles/2016/09/08/stackless-scala-1-the-problem.html">Stackless Scala</a></p>
+</li>
+<li>
+<p><a href="https://www.signifytechnology.com/blog/2018/07/scalafp-firsthand-with-scala-cats-monads-number-1-by-harmeet-singh">ScalaFP: Firsthand With Scala-Cats</a></p>
+</li>
+<li>
+<p><a href="https://medium.com/@abu_nadhr/scala-cats-library-for-dummies-part-1-8ec47af7a144">Scala Cats library for dummies</a></p>
+</li>
+<li>
+<p><a href="https://underscore.io/blog/posts/2016/12/05/type-lambdas.html">Type lambdas and kind projector</a></p>
+</li>
+<li><a href="http://fommil.com/scalax15">Shapeless for Mortals</a> (2015) by Sam Halliday (Talk)</li>
+<li><a href="https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface">Category Theory for Programmers</a></li>
+<li><a href="http://lambdafoo.com/scala-syd-2015-modules">Scala's Modular Roots</a></li>
+<li><a href="http://koff.io/posts/292173-lens-in-scala">Lens in scala</a></li>
+</ul>
+<p><strong>Typeclass</strong></p>
+<ul>
+<li><a href="https://blog.scalac.io/2017/04/19/typeclasses-in-scala.html">Type classes in Scala</a></li>
+<li><a href="http://tpolecat.github.io/2015/04/29/f-bounds.html">Returning the "Current" Type in Scala</a></li>
+<li><a href="https://julien-truffaut.github.io/Typeclass">Typeclass 101: ad hoc polymorphism in scala</a></li>
+<li><a href="http://workday.github.io/assets/scala-exchange-type-classes">All you don't need to know about Typeclasses</a></li>
+<li><a href="http://learnyouahaskell.com/types-and-typeclasses#typeclasses-101">Typeclasses 101</a></li>
+<li><a href="https://markhneedham.com/blog/2012/05/22/scalahaskell-a-simple-example-of-type-classes">Scala/Haskell: A simple example of type classes</a></li>
+<li><a href="http://www.casualmiracles.com/2012/05/03/a-small-example-of-the-typeclass-pattern-in-scala">A Small Example of the Typeclass Pattern in Scala</a></li>
+</ul>
+<p><strong>Patterns</strong></p>
+<ul>
+<li><a href="https://gigiigig.github.io/posts/2015/09/13/aux-pattern.html">The Aux Pattern</a></li>
+<li><a href="http://www.vlachjosef.com/aux-pattern-evolution/">Aux Pattern Evolution</a></li>
+<li><a href="https://medium.com/@itseranga/scala-cake-pattern-e0cd894dae4e">Cake pattern</a></li>
+<li><a href="http://spray.io/blog/2012-12-13-the-magnet-pattern">Magnet pattern</a></li>
+</ul>
+<p><strong>Other FP languages</strong></p>
+<ul>
+<li><a href="https://maryrosecook.com/blog/post/a-practical-introduction-to-functional-programming">A practical introduction to functional programming</a></li>
+<li><a href="http://learnyouahaskell.com/chapters">Learn You a Haskell for Great Good!</a></li>
+<li><a href="http://prajitr.github.io/quick-haskell-syntax">A Quick Tour of Haskell Syntax</a></li>
+<li><a href="https://ocaml.org/learn/taste.html">OCaml taste</a></li>
+</ul>
+<p><strong>Blogs</strong></p>
+<ul>
+<li><a href="https://typelevel.org/blog">Typelevel</a></li>
+<li><a href="https://blog.scalac.io">Scalac</a></li>
+<li><a href="https://www.signifytechnology.com/blog">Signify</a></li>
+<li><a href="https://scalatimes.com">Scala Times</a></li>
+<li><a href="https://softwaremill.com/blog">SoftwareMill</a></li>
+<li><a href="http://okmij.org/ftp/README.html">okmij</a></li>
+</ul>
+<p><strong>Videos</strong></p>
+<ul>
+<li><a href="https://youtu.be/sxudIMiOo68">FP to the Max</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLFrwDVdSrYE6dy14XCmUtRAJuhCxuzJp0">Functional Structures in Scala</a></li>
+<li><a href="https://www.youtube.com/watch?v=po3wmq4S15A">Functional Programming with Effects</a></li>
+<li><a href="https://skillsmatter.com/skillscasts/13247-scala-matters">The Death of Final Tagless</a></li>
+<li><a href="https://www.youtube.com/watch?reload=9&amp;v=g_jP47HFpWA">The Making of an IO</a></li>
+<li><a href="https://www.youtube.com/watch?v=Eihz7kqn6mU&amp;t=833s">Scalaz 8 VS Akka actors</a></li>
+<li><a href="https://youtu.be/H28QqxO7Ihc">Move Over Free Monads: Make Way for Free Applicatives!</a></li>
+</ul>
+<!--
+
+Algebra = Operations + Types
+
+e.g.
+* create is an operation
+* A and String is a type
+* Db is a piece of Algebra that can be composed or extended
+
+trait Db[F[_]] {
+  def create[A]: F[String]
+  def delete(id: String): F[Boolean]
+}
+
+Interpreter = "Implementation" of an Algebra
+
+i.e. Materialization for specific type
+
+---
+they are alternatives:
+
+(tagless) final encoding: typeclass
+* ignore tagless
+* final encoding: means that you can describe operations with functions
+
+initial encoding: free monad
+* you can describe operations with case classes
+
+trait Db {
+  case class Create[F[_], A](a: A)
+  case class Delete[F[_]](id: String)
+}
+
+---
+
+Tagless Final Encoding == MTL-style program composition
+
+mtl is now is a final tagless encoding of common effects
+
+The `mtl` (Monad Transformer library) library in haskell used to provide the concrete monad transformers types, which are now in `transformers`
+
+Option, Either, IO are all effect/context/wrapper
+
+-->
+
+<h2 id="faqs">FAQs</h2>
+<ul>
+<li><a href="https://docs.scala-lang.org/tutorials/FAQ">Scala FAQs</a></li>
+</ul>
+<p><em>What is the Scala hierarchy?</em></p>
+<p><img alt="scala-hierarchy" src="../img/scala-hierarchy.png" /></p>
+<p><em>What is the difference between by-name and by-value parameters?</em></p>
+<p>A <strong>by-value</strong> parameter is evaluated before the method is invoked e.g. <code>(x: Int)</code> while a <strong>by-name</strong> parameter is not evaluated before the method is invoked, but each time the parameter is referenced inside the method e.g. <code>(x: =&gt; Int)</code></p>
+<p><em>What are the differences between def val var lazy?</em></p>
+<ul>
+<li><code>def</code> defines a method</li>
+<li><code>val</code> defines a fixed value, it is immmutable and eagerly initialized</li>
+<li><code>var</code> defines a variable reference, it is mutable and it should be avoided</li>
+<li><code>lazy</code> only initialised when required and as late as possible (deferred evaluation), default is strict and is not recomputed like by-name parameters</li>
+</ul>
+<p><em>What are Nothing Nil None Empty Null null Unit?</em></p>
+<ul>
+<li><code>Nothing</code> is a trait that is the bottom subtype of every subtype of <code>Any</code></li>
+<li><code>Nil</code> is an empty list that is defined as a <code>List[Nothing]</code></li>
+<li><code>None</code> is an empty option that is defined as a <code>Option[Nothing]</code></li>
+<li><code>Null</code> is a trait and is the bottom type similiar to <code>Nothing</code> but only for <code>AnyRef</code> not <code>AnyVal</code></li>
+<li><code>null</code> is an instance of the <code>Null</code> trait</li>
+<li><code>Unit</code> is a subtype of <code>AnyVal</code>, it's only value is <code>()</code> and it is not represented by any object in the underlying runtime system. A method with return type <code>Unit</code> is analogous to a Java method which is declared <code>void</code></li>
+</ul>
+<p><em>What is the uniform access principal?</em></p>
+<p>The uniform access principle states that variables, precomputed properties and parameterless functions should be accessed using the same syntax. Therefore not betraying whether they are implemented through storage or through computation. Scala supports this principle by not allowing parentheses to be placed at call sites of parameterless functions. A parameterless function definition <code>def</code> can be changed to a <code>val</code> or vice versa, without affecting client code</p>
+<p><em>What referentially transparent means?</em></p>
+<p>An expression <code>e</code> is <strong>referentially transparent</strong> if, for all programs <code>p</code>, all occurrences of <code>e</code> in <code>p</code> can be replaced by the result of evaluating <code>e</code> without affecting the meaning of <code>p</code></p>
+<p><em>What is a pure function?</em></p>
+<p>A function <code>f</code> is <strong>pure</strong> if the expression <code>f(x)</code> is referentially transparent for all referentially transparent <code>x</code>. Hence a pure function is <strong>modular</strong> and <strong>composable</strong></p>
+<p><em>What is a higher-order function?</em></p>
+<p>A <strong>higher-order function</strong> is a function that takes other functions as arguments or returns a function as result</p>
+<p><em>What is recursive function?</em></p>
+<p>A <strong>recursive function</strong> is a function which calls itself. With <strong>head recursion</strong>, the recursive call is not the last instruction in the function.</p>
+<p>A <strong>tail recursive function</strong> is a special case of recursion in which the last instruction executed in the method is the recursive call. As long as the recursive call is in tail position, Scala detects and compiles it to the same sort of bytecode as would be emitted for a while loop</p>
+<pre><code class="scala">def factorial(n: Int): Int = {
+  @tailrec
+  def loop(index: Int, result: Int): Int = index match {
+    case i if i == 0 =&gt; loop(1, 1 * result)
+    case i if i &lt; n =&gt; loop(i + 1, i * result)
+    case i =&gt; i * result
+  }
+  loop(0, 1)
+}
+</code></pre>
+
+<p><em>What is a function literal?</em></p>
+<p><strong>Function literal</strong> is a synonyms for <strong>anonymous function</strong>. Because functions are just ordinary Scala objects, we say that they are <strong>first-class values</strong>. A function literal is syntactic sugar for an object with a method called apply</p>
+<pre><code class="scala">val lessThan0 = (a: Int, b: Int) =&gt; a &lt; b
+val lessThan1 = (a, b) =&gt; a &lt; b
+val lessThan2 = new Function2[Int, Int, Boolean] {
+  override def apply(a: Int, b: Int): Boolean = a &lt; b
+}
+</code></pre>
+
+<p><em>What is a variadic function?</em></p>
+<p>A <strong>variadic function</strong> accepts zero or more arguments. It provides a little syntactic sugar for creating and passing a Seq of elements explicitly. The special <code>_*</code> type annotation allows to pass a Seq to a variadic method</p>
+<pre><code class="scala">sealed trait MyList[+A]
+case object MyNil extends MyList[Nothing]
+case class MyCons[+A](head: A, tail: MyList[A]) extends MyList[A]
+
+object MyList {
+  def apply[A](list: A*): MyList[A] =
+    if (list.isEmpty) MyNil
+    else MyCons(list.head, apply(list.tail: _*))
+}
+
+// usage
+MyList(1, 2, 3, 4, 5)
+</code></pre>
+
+<p><em>What is a value class?</em></p>
+<p>The <a href="https://docs.scala-lang.org/overviews/core/value-classes.html">AnyVal</a> class can be used to define a <strong>value class</strong>, which is optimized at compile time to avoid the allocation of an instance</p>
+<pre><code class="scala">final case class Price(value: BigDecimal) extends AnyVal {
+  def lowerThan(p: Price): Boolean = this.value &lt; p.value
+}
+</code></pre>
+
+<p><em>What is autoboxing?</em></p>
+<p>The JVM defines primitive types (<code>boolean</code>, <code>byte</code>, <code>char</code>, <code>float</code>, <code>int</code>, <code>long</code>, <code>short</code> and <code>double</code>) that are <em>stack-allocated</em> rather than <em>heap-allocated</em>. When a generic type is introduced, for example, <code>scala.collection.immutable.List</code>, the JVM references an object equivalent, instead of a primitive type. For example, an instantiated list of integers would be heap-allocated objects rather than integer primitives. The process of converting a primitive to its object equivalent is called <em>boxing</em>, and the reverse process is called <em>unboxing</em>. Boxing is a relevant concern for performance-sensitive programming because boxing involves heap allocation. In performance-sensitive code that performs numerical computations, the cost of <a href="https://docs.oracle.com/javase/tutorial/java/data/autoboxing.html">boxing and unboxing</a> can can create significant performance slowdowns</p>
+<p><em>What is the specialized annotation?</em></p>
+<p><strong>Specialization</strong> with <code>@specialized</code> annotation, refers to the compile-time process of generating duplicate versions of a generic trait or class that refer directly to a primitive type instead of the associated object wrapper. At runtime, the compiler-generated version of the generic class (or, as it is commonly referred to, the specialized version of the class) is instantiated. This process eliminates the runtime cost of boxing primitives, which means that you can define generic abstractions while retaining the performance of a handwritten, specialized implementation although it has some <a href="http://aleksandar-prokopec.com/2013/11/03/specialization-quirks.html">quirks</a></p>
+<p><em>What is the switch annotation?</em></p>
+<p>In scenarios involving simple pattern match statements that directly match a value, using <code>@switch</code> annotation provides a warning at compile time if the switch can't be compiled to a tableswitch or lookupswitch which procides better performance, because it results in a branch table rather than a decision tree</p>
+<p><em>What is an Algebraic Data Type?</em></p>
+<p>In type theory, regular data structures can be described in terms of sums, products and recursive types. This leads to an algebra for describing data structures (and so-called algebraic data types). Such data types are common in statically typed functional languages</p>
+<p>An <strong>algebraic data type</strong> (ADT) is just a data type defined by one or more data constructors, each of which may contain zero or more arguments. We say that the data type is the sum or union of its data constructors, and each data constructor is the product of its arguments, hence the name algebraic data type</p>
+<p>Example</p>
+<ul>
+<li>these types represent a SUM type because Shape is a Circle OR a Rectangle</li>
+<li>Circle is a PRODUCT type because it has a radius</li>
+<li>Rectangle is a PRODUCT type because it has a width AND a height</li>
+</ul>
+<pre><code class="scala">sealed trait Shape
+final case class Circle(radius: Double) extends Shape
+final case class Rectangle(width: Double, height: Double) extends Shape
+</code></pre>
+
+<p>Sum types and product types provide the necessary abstraction for structuring various data of a domain model. Whereas sum types let model the variations within a particular data type, product types help cluster related data into a larger abstraction.</p>
+<p><em>How for-comprehensions is desugared? (<a href="https://docs.scala-lang.org/tour/for-comprehensions.html">docs</a>)</em></p>
+<pre><code class="scala">// (1) works because &quot;foreach&quot; is defined
+scala&gt; for (i &lt;- List(1, 2, 3)) println(i)
+1
+2
+3
+
+// (2) &quot;yield&quot; works because &quot;map&quot; is defined
+scala&gt; for (i &lt;- List(1, 2, 3)) yield i*2
+res2: List[Int] = List(2, 4, 6)
+
+// (3) &quot;if&quot; works because &quot;withFilter&quot; is defined
+scala&gt; for (i &lt;- List(1, 2, 3, 4); if i%2 == 0) yield i*2
+res3: List[Int] = List(4, 8)
+
+// (4) works because &quot;flatMap&quot; is defined
+scala&gt; for (i &lt;- List(1, 2, 3, 4); j &lt;- List(3, 4, 5, 6); if i == j) yield i
+res4: List[Int] = List(3, 4)
+</code></pre>
+
+<p><em>What is a Typeclass?</em></p>
+<p>A Typeclass is a programming pattern that allow to extend existing libraries with new functionality, without using traditional inheritance and without altering the original library source code using a combination of ad-hoc polymorphism, parametric polymorphism (type parameters) and implicits</p>
+<p><em>What is a Monoid?</em></p>
+<p>A Monoid is an algebraic type with 2 laws, a binary operation over that type, satisfying <em>associativity</em> and an <em>identity</em> element</p>
+<ul>
+<li>associative e.g <code>a + (b + c) == (a + b) + c</code></li>
+<li>identity e.g. for sum is 0, for product is 1, for string is ""</li>
+</ul>
+<pre><code class="scala">trait Monoid[A] {
+  // associativity
+  // op(op(x, y), z) == op(x, op(y, z))
+  def op(x: A, y: A): A
+
+  // identity
+  // op(x, zero) == op(zero, x) == x
+  def zero: A
+}
+
+// example
+val stringMonoid = new Monoid[String] {
+  override def op(x: String, y: String): String = x + y
+  override def zero: String = &quot;&quot;
+}
+</code></pre>
+
+<p>Monoids have an intimate connection with lists and arguments of the same type, it doesn't matter if we choose <code>foldLeft</code> or <code>foldRight</code> when folding with a monoid because the laws of associativity and identity hold, hence this allows parallel computation</p>
+<p>The real power of monoids comes from the fact that they compose, this means, for example, that if types A and B are monoids, then the tuple type (A, B) is also a monoid (called their product)</p>
+<pre><code class="scala">scala&gt; List(&quot;first&quot;, &quot;second&quot;, &quot;third&quot;).foldLeft(stringMonoid.zero)(stringMonoid.op)
+scala&gt; List(&quot;first&quot;, &quot;second&quot;, &quot;third&quot;).foldRight(stringMonoid.zero)(stringMonoid.op)
+res: String = firstsecondthird
+</code></pre>
+
+<p><em>What is a Semigroup?</em></p>
+<p>A Semigroup is just the <code>combine</code> part of a Monoid. While many semigroups are also monoids, there are some data types for which we cannot define an empty element e.g. non-empty sequences and positive integers</p>
+<pre><code class="scala">trait Semigroup[A] {
+  // or op
+  def combine(x: A, y: A): A
+}
+
+trait Monoid[A] extends Semigroup[A] {
+  // or zero
+  def empty: A
+}
+</code></pre>
+
+<p><em>What is a Functor?</em></p>
+<p>Informally, a Functor is anything with a <code>map</code> method</p>
+<pre><code class="scala">// F is a higher-order type constructor or a higher-kinded type
+trait Functor[F[_]] {
+  def map[A, B](fa: F[A])(f: A =&gt; B): F[B]
+}
+</code></pre>
+
+<p><em>What is a Monad?</em></p>
+<p>Informally, a Monad is anything with a constructor and a flatMap method. A Monad is a mechanism for <em>sequencing computations</em>, all monads are functors but the opposite is not true.</p>
+<p>A Monad is an implementation of one of the minimal sets of monadic combinators, satisfying the laws of associativity and identity</p>
+<ul>
+<li>unit and flatMap</li>
+<li>unit and compose</li>
+<li>unit, map and join</li>
+</ul>
+<p>where the above are defined</p>
+<pre><code class="scala">def unit[A](a: =&gt; A): F[A]
+def map[A, B](ma: F[A])(f: A =&gt; B): F[B]
+def flatMap[A, B](ma: F[A])(f: A =&gt; F[B]): F[B]
+def compose[A, B, C](f: A =&gt; F[B], g: B =&gt; F[C]): A =&gt; F[C]
+def join[A](mma: F[F[A]]): F[A]
+
+// Identity: compose(unit, f) = f = compose(f, unit)
+// Associativity: compose(compose(f, g), h) = compose(f, compose(g, h))
+</code></pre>
+
+<p>A Monad provide a context for introducing and binding variables and performing variable substitution</p>
+<pre><code class="scala">object Monad {
+  case class Id[A](value: A) {
+    def map[B](f: A =&gt; B): Id[B] =
+      Id(f(value))
+    def flatMap[B](f: A =&gt; Id[B]): Id[B] =
+      f(value)
+  }
+
+  val idMonad: Monad[Id] = new Monad[Id] {
+    override def unit[A](a: =&gt; A): Id[A] =
+      Id(a)
+
+    override def flatMap[A, B](ma: Id[A])(f: A =&gt; Id[B]): Id[B] =
+      ma.flatMap(f)
+  }
+}
+
+Monad.Id(&quot;hello &quot;).flatMap(a =&gt; Monad.Id(&quot;world&quot;).flatMap(b =&gt; Monad.Id(a + b)))
+
+for {
+  a &lt;- Monad.Id(&quot;hello &quot;)
+  b &lt;- Monad.Id(&quot;world&quot;)
+} yield a + b
+
+res: Monad.Id[String] = Id(hello world)
+</code></pre>
+
+<p><em>What is a Semigroupal?</em></p>
+<p>A Semigroupal is a type class that allows to combine contexts. In contrast to flatMap, which imposes a strict order, Semigroupal parameters are independent of one another, which gives more freedom with respect to monads</p>
+<pre><code class="scala">trait Semigroupal[F[_]] {
+  def product[A, B](fa: F[A], fb: F[B]): F[(A, B)]
+}
+</code></pre>
+
+<p><em>What is an Applicative?</em></p>
+<ul>
+<li>all applicatives are functors</li>
+<li>all applicatives are a semigroupal</li>
+<li>all monads are applicative functors, viceversa is not true</li>
+</ul>
+<pre><code class="scala">// cats definition
+trait Apply[F[_]] extends Semigroupal[F] with Functor[F] {
+  def ap[A, B](ff: F[A =&gt; B])(fa: F[A]): F[B]
+  def product[A, B](fa: F[A], fb: F[B]): F[(A, B)] =
+    ap(map(fa)(a =&gt; (b: B) =&gt; (a, b)))(fb)
+}
+
+trait Applicative[F[_]] extends Apply[F] {
+  def pure[A](a: A): F[A]
+}
+
+// red book definition
+trait Applicative[F[_]] extends Functor[F] {
+  // primitive combinators
+  def map2[A, B, C](fa: F[A], fb: F[B])(f: (A, B) =&gt; C): F[C]
+  def unit[A](a: =&gt; A): F[A]
+
+  // derived combinators
+  def map[A, B](fa: F[A])(f: A =&gt; B): F[B] =
+    map2(fa, unit(()))((a, _) =&gt; f(a))
+  def traverse[A, B](as: List[A])(f: A =&gt; F[B]): F[List[B]] =
+    as.foldRight(unit(List[B]()))((a, fbs) =&gt; map2(f(a), fbs)(_ :: _))
+}
+</code></pre>
+
+<p><em>What are some of the benefits of Functional Programming?</em></p>
+<ul>
+<li>Pure functions are easier to reason about</li>
+<li>Function signatures are more meaningful</li>
+<li>Parallel/Concurrent programming is easier</li>
+<li>Testing is easier and pure functions lend themselves well to techniques like property-based testing</li>
+<li><a href="https://alvinalexander.com/scala/fp-book/benefits-of-functional-programming">Other benefits</a></li>
+</ul>
+<p><em>What is an effectful computation?</em></p>
+<p>In functional programming, an effect adds some capabilities to a computation. An effect is modeled usually in the form of a <strong>type constructor</strong> that constructs types with these additional capabilities
+* <code>List[A]</code> adds the effect of aggregation on A
+* <code>Option[A]</code> adds the capability of optionality for the type A
+* <code>Try[A]</code> models the effects of exceptions</p>
+<p><em>What are inhabitants of a type?</em></p>
+<p>Inhabitants of a type are values for that types. Algebraig Data Types can be thought of in terms of regular algebraic equations and its result gives the number of inhabitants
+* sum types: <code>Either A B</code> or <code>A or B</code> corresponds to the equation <code>A + B</code>
+* products types: <code>(A, B)</code> (Tuple2) or <code>A and B</code> corresponds to the equation <code>A * B</code>
+* exponentiation: <code>A -&gt; B</code> (Function1) corresponds to the equation <code>B^A</code> e.g. <code>Boolean -&gt; Boolean</code> is <code>2^2</code>
+* the <code>Unit</code> data type corresponds to the value 1
+* the <code>Void</code> data type corresponds to the value 0</p>
+<p><em>What's the difference between monomorphic and polymorphic?</em></p>
+<p>Only by knowing the types
+* Given a monomorphic signature <code>List[Int] -&gt; List[Int]</code>, there are too many possible implementations to say what the function does
+* Given a polymorphic/parametrized type signature <code>List[A] -&gt; List[A]</code> it's proven that all elements in the result appear in the input which restricts the possible implementations</p>
+<!--
+
+*What is an IO Monad?*
+
+
+<pre><code class="scala">
+</code></pre>
+
+
+TODO
+https://stackoverflow.com/questions/6246719/what-is-a-higher-kinded-type-in-scala
+
+Summary
+
+* Semigroup: associativity
+* Monoid: associativity + identity
+* Functor: map
+* Monad: any of 3 monadic laws (e.g. unit + flatMap) + associativity and identity (extends Functor)
+* Applicative functor
+* Traversable functor
+
+* A function having the same argument and return type is sometimes called an endofunction
+
+TODO Functor and Monad
+
+* associative e.g. `x.flatMap(f).flatMap(g) == x.flatMap(a => f(a).flatMap(g))`
+* monadic functions of types like `A => F[B]` are called Kleisli arrows
+
+Laws
+* Left and right identity
+* Associativity
+* Naturality of product
+
+## Best practices and tips
+
+
+<pre><code># best practices
+https://stackoverflow.com/questions/5827510/how-to-override-apply-in-a-case-class-companion
+
+# type projector
+https://typelevel.org/blog/2015/07/13/type-members-parameters.html
+
+# jvm stack
+https://www.artima.com/insidejvm/ed2/jvm8.html
+https://alvinalexander.com/scala/fp-book/recursion-jvm-stacks-stack-frames
+</code></pre>
+
+
+
+<pre><code class="scala">// to remember: foldLeft start from left (acc op xFirst) ==&gt; (B, A)
+// to remember: foldRight start from right (xLast op acc) ==&gt; (A, B)
+</code></pre>
+
+
+In Scala, all methods whose names end in : are right-associative. That is, the expression x :: xs is actually
+the method call xs.::(x) , which in turn calls the data constructor ::(x,xs)
+
+* curry function used to assist type inference when passing anonymous functions
+
+* companion object
+* a **variadic function** accepts zero or more arguments
+* algebraic data type (ADT)
+
+an API should form an algebra — that is, a collection of data types, functions over these data types, and importantly, laws or properties that express relationships between these functions
+
+* volatile
+* compare and swap
+* javap
+* diamond inheritance problem
+* variance / covariance of type A
+
+
+<pre><code class="scala">
+// + covariant
+// List[Dog] is considered a subtype of List[Animal], assuming Dog is a subtype of Animal
+sealed trait List[+A]
+// Nothing is a subtype of all types
+case object Nil extends List[Nothing]
+case class Cons[+A](head: A, tail: List[A]) extends List[A]
+</code></pre>
+
+
+object PizzaService extends PizzaService
+
+You can’t call functions on a trait, so you need to create a concrete instance of that trait before you do anything else. This technique is common with the modular pro- gramming approach, and it’s known as “reifying” the trait. (The word reify is defined as, “Taking an abstract concept and making it concrete.”)
+
+-->
+
+<p><br></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../system-design/" class="btn btn-neutral float-right" title="System Design">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../jvm/" class="btn btn-neutral" title="JVM"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/niqdev/devops/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../jvm/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../system-design/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
