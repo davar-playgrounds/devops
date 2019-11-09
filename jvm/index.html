@@ -8,7 +8,7 @@
   
   <meta name="author" content="niqdev">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>JVM - DevOps</title>
+  <title>JVM (OLD) - DevOps</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,7 +17,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "JVM";
+    var mkdocs_page_name = "JVM (OLD)";
     var mkdocs_page_input_path = "jvm.md";
     var mkdocs_page_url = null;
   </script>
@@ -105,20 +105,10 @@
           
             <li class="toctree-l1 current">
 		
-    <a class="current" href="./">JVM</a>
+    <a class="current" href="./">JVM (OLD)</a>
     <ul class="subnav">
             
     <li class="toctree-l2"><a href="#jvm">JVM</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l3" href="#java-memory-management">Java Memory Management</a></li>
-        
-            <li><a class="toctree-l3" href="#perfomance">Perfomance</a></li>
-        
-            <li><a class="toctree-l3" href="#scala">Scala</a></li>
-        
-        </ul>
     
 
     </ul>
@@ -161,7 +151,7 @@
     
       
     
-    <li>JVM</li>
+    <li>JVM (OLD)</li>
     <li class="wy-breadcrumbs-aside">
       
         <a href="https://github.com/niqdev/devops/edit/master/docs/jvm.md"
@@ -175,208 +165,7 @@
             <div class="section">
               
                 <h1 id="jvm">JVM</h1>
-<h2 id="java-memory-management">Java Memory Management</h2>
-<p>Resources</p>
-<ul>
-<li><a href="https://docs.oracle.com/javase/specs/index.html">Java Language and Virtual Machine Specifications</a></li>
-<li><a href="http://www.oracle.com/technetwork/java/whitepaper-135217.html">The Java HotSpot Performance Engine Architecture</a></li>
-<li><a href="http://www.oracle.com/technetwork/java/javase/memorymanagement-whitepaper-150215.pdf">Memory Management in the Java HotSpot Virtual Machine</a></li>
-<li><a href="https://blog.takipi.com/jvm-architecture-101-get-to-know-your-virtual-machine">JVM Architecture 101</a></li>
-<li><a href="https://www.artima.com/insidejvm/ed2/index.html">Inside the Java Virtual Machine</a></li>
-<li><a href="http://blog.jamesdbloom.com/JVMInternals.html">JVM Internals</a></li>
-<li><a href="http://blog.jamesdbloom.com/JavaCodeToByteCode_PartOne.html">Java Code to Byte Code</a></li>
-<li><a href="https://www.cubrid.org/blog/understanding-jvm-internals">Understanding JVM Internals</a></li>
-<li><a href="https://www.cubrid.org/blog/understanding-java-garbage-collection">Understanding Java Garbage Collection</a></li>
-<li><a href="http://jd.benow.ca">Java Decompiler</a></li>
-<li><a href="http://jcip.net">Java Concurrency in Practice</a> (Book)</li>
-<li><a href="https://www.baeldung.com/jvm-parameters">Most Important JVM Parameters</a></li>
-<li><a href="https://www.baeldung.com/jvm-garbage-collectors">JVM Garbage Collectors</a></li>
-<li><a href="https://dri.es/files/oopsla07-georges.pdf">Statistically Rigorous Java Performance Evaluation</a> (Paper)</li>
-</ul>
-<p><img alt="jvm-architecture" src="../img/jvm-architecture.png" /></p>
-<h3 id="stack">Stack</h3>
-<p>The Stack is a First-In-Last-Out data structure managed by the JVM i.e. push to the top, pull or pop from the top. Every thread has its own Stack and data can be seen only by that thread</p>
-<p>Each time you call a function, Java pushes the local variables for that function onto the Stack. A copy of the value is passed to the methods. When the method returns, all the data are popped or pulled from the Stack</p>
-<p>When you reach a closing curly bracket (not only after a return) any local variables declared inside the block you are leaving is popped from the Stack and destroyed, this is how scope works</p>
-<h3 id="heap">Heap</h3>
-<p>The Heap allows to store data that has a longer lifetime than a single code block or function e.g. objects that need to be shared across multiple methods</p>
-<p>All the memory in the JVM is mainly Heap, is massive compared with the Stack and there is only one Heap shared across all the threads and a number of Stacks (each thread has its own Stack)</p>
-<h3 id="variables">Variables</h3>
-<p>How variable are store in Java:</p>
-<ul>
-<li>objects are stored physically on the Heap</li>
-<li>variables are reference to objects</li>
-<li>local variables are stored on the Stack</li>
-<li>primitive variables resides entirely on the Stack</li>
-</ul>
-<pre><code>int age = 30
-String name = &quot;niqdev&quot;
-
-Stack          Heap
-[  name* ] --&gt; [ &quot;niqdev&quot; ]
-[  age   ]
-</code></pre>
-
-<p>In Java, variable can <em>only</em> be passed by values i.e. a new variable is added on the Stack</p>
-<p>Passing by reference is <em>not</em> possible, but don't confuse that when objects are passed into methods, <em>the <strong>reference</strong> of the object is passed <strong>by value</strong></em></p>
-<p><code>final</code> keyword means that the value can only be assigned once (can be assigned later), but we can change the value referenced by the object. Lack of const correctness in Java: <code>const</code> unfortunately is a reserved keyword and cannot be used, but allows to freeze the whole state of the object internally: <em>mutable states are bad!</em></p>
-<p>Example</p>
-<pre><code class="java">final Customer c = new Customer(&quot;a&quot;)
-// or
-final Customer c
-c = new Customer(&quot;a&quot;)
-
-// this is NOT allowed - compiler error
-c = new Customer(&quot;b&quot;)
-// but this yes
-c.setName(&quot;b&quot;)
-</code></pre>
-
-<h3 id="string">String</h3>
-<p>As a general rule of thumb, all objects are stored on the Heap and only references are stored in the Stack. In reality the JVM for optimization maybe store some objects also in the Stack, but this is not visibile. Strings are immutable and if "short" are stored in a pool on the Heap to be reused.</p>
-<p>When you create a new string with quotes e.g. <code>"hello"</code>, the JVM creates and retrieve the string from a constant pool. To create a new object every time use the <code>new String("hello")</code>. To force a lookup in the pool use <code>intern()</code>. Use <code>==</code> to compare the reference (address in memory)</p>
-<pre><code class="java">String s1 = &quot;hello&quot;;
-String s2 = &quot;hello&quot;;
-String s3 = new String(&quot;hello&quot;);
-String s4 = new String(&quot;hello&quot;).intern();
-
-// true - 2 strings created using quotes refer to the same object
-System.out.println(s1 == s2);
-// false - if you create a string using new operator
-// it's not part of the constant pool, so objects are different
-System.out.println(s1 == s3);
-// true - if you call intern() method Java adds current string to the string pool
-// and 2 string become the same object
-System.out.println(s1 == s4);
-</code></pre>
-
-<h3 id="garbage-collection">Garbage collection</h3>
-<p><strong>Garbage collection</strong> (invented in lisp around 1959) removes object no more referenced on the Heap from the Stack. Most of the objects don't live for long, if an object survives it is likely to live forever. <strong>Mark and sweep</strong> is the algorithm used:</p>
-<ul>
-<li>instead of look for all the objects that must be removed, it looks for the object that need to be retained</li>
-<li>all the threads in the application are paused (stop the world event)</li>
-<li>follow all the references from the Stack and mark it as alive</li>
-<li>full scan on all the Heap and wipe unmarked references</li>
-<li>reorder contiguos memory in order to avoid fragmentation</li>
-<li>it's faster if more objects need to be cleaned because it looks only for what need to be retained</li>
-</ul>
-<p><strong>Generational garbage collection</strong> is a way to organize the Heap into 2 sections to try to avoid freeze the application while garbage collecting the whole Heap:</p>
-<ul>
-<li><strong>young generation</strong> is small, so it requires only few fraction of seconds to be scanned</li>
-<li><strong>old generation</strong> also called <em>Tenured</em>, isn't scanned usually, only if needed i.e. when it's full and requires few seconds</li>
-<li>young generation is divided in <em>Eden</em>, <em>Survivor0</em> and <em>Survivor1</em></li>
-<li>new objects are created in the Eden</li>
-<li>when Eden gets full, objects are moved in the Survivor space and moved amongs the two alternatively to be compacted</li>
-<li>memory is reserved in the Heap for S0 and S1 even if not used</li>
-<li>after an object survived 8 generations (default), movement and compaction between Survivor GC, then is stored in the old generation</li>
-<li>
-<p>VM can change the number of generations based on the amount of memory available</p>
-</li>
-<li>
-<p>class variables (static variables) are stored as part of the class object associated with that class and stored in the Permanent Generation (PermGen) prior Java 8 or in the MetaSpace</p>
-</li>
-</ul>
-<p><img alt="jvm-gc" src="../img/jvm-gc.png" /></p>
-<p>Run <code>jvisualvm</code> and add <code>Visual GC</code> plugin</p>
-<p>Any object on the Heap which cannot be reached through a reference from the Stack is <em>eligible for garbage collection</em>. <strong>Memory leak</strong> are objects that are not free on the Heap and continue to consume memory after a program finish. Memory leaks are difficult to find and the JVM try to avoid them running the garbage collector. <strong>Soft leak</strong> happens when an object is referenced on the Stack even thought it will never be used again</p>
-<p>You can not clear memory, with <code>Runtime.getRuntime().gc()</code> or <code>System.gc()</code> you can only suggest JVM to run garbage collection, but there is no guarentee. In general, you should never invoke <code>gc()</code> directly. While it is running the application is temporarily suspended and it will pause all the threads. <code>finalize()</code> is invoked when an object is garbage collected, but there is absolutely no guarentee if and when it will happen.
-Is useful to check for example memory leak, as warning, if some resources were not closed properly</p>
-<h3 id="permgen-and-metaspace">PermGen and Metaspace</h3>
-<p>Permanent Generation (Heap memory) since Java 6 contains objects that will never garbage collected:</p>
-<ul>
-<li>string pool is in PermGen</li>
-<li>class metadata are stored in PermGen</li>
-</ul>
-<p>If the PermGen run out of space the only solution is to increase the size of memory, otherwise the app will crash. In Java 7 String Pool was moved in the old memory and therefore string can be garbage collected now. In Java 8 MetaSpace replaced PermGen as separeted memory allocated, which is not part of the Heap anymore and is the total available memory</p>
-<h3 id="tuning">Tuning</h3>
-<pre><code class="bash"># set the maximum heap size to 512 MB
--Xmx512m
-# set the starting heap size to 150 MB
--Xms150m
-# set the size of the PermGen to 256 MB (PermGen was removed in Java 8)
--XX:MaxPermSize=256M
-# set the size of the young generation to 256 MB
-# young generation by default is 1/3 of the max heap size (suggestion between 1/2-1/4)
--Xmn256m
-</code></pre>
-
-<p>Oracle JVM has 3 types of garbage collector, it doesn't matter how many threads, the application will be paused anyway:</p>
-<pre><code class="bash"># serial uses a single thread to perform gc
--XX:+UseSerailGC
-# parallel performs gc on young generation in parallel
--XX:+UseParallelGC
-# mostly concurrent, closest to real time gc pausing only when marking
-# try to minimize the &quot;stop of the world&quot;
--XX:+UseConcMarkSweepGC
--XX:+UseG1GC
-</code></pre>
-
-<p>Debugging</p>
-<pre><code class="bash"># print to console when a garbage collection takes place
--verbose:gc
-# creates a heap dump file if app crash
--XX:HeapDumpOnOutOfMemory
-# to find default garbage collector on the machine
--XX:+PrintCommandLineFlags
-</code></pre>
-
-<p><em>Parameters are case sensitive</em></p>
-<h3 id="weak-and-soft-references">Weak and Soft references</h3>
-<p>References from the Stack to the Heap</p>
-<ul>
-<li><strong>Strong</strong> references are always marked as alive (default)</li>
-<li><strong>Soft</strong> references are eligible for garbage collection only if the JVM run out of memory</li>
-<li><strong>Weak</strong> references are always eligible for garbage collection and is up to the JVM to retain it or not</li>
-</ul>
-<p><code>WeakReference&lt;T&gt;</code> and <code>SoftReference&lt;T&gt;</code> are useful for caching scenario, when a reference on the Heap is GC, then the variable in the stack became <code>null</code>. In a WeakHashMap for example, the reference from the stack to the map in the Heap is strong, but the references to key/value pair are eligible for GC, in that case both key and value are removed</p>
-<p><br></p>
-<h2 id="perfomance">Perfomance</h2>
-<p>Resources</p>
-<ul>
-<li><a href="http://hdrhistogram.org">HdrHistogram</a></li>
-<li><a href="https://aboullaite.me/understanding-jit-compiler-just-in-time-compiler">Understanding JIT compiler</a></li>
-<li><a href="http://www.oracle.com/technetwork/articles/java/architect-evans-pt1-2266278.html">Understanding Java JIT Compilation with JITWatch</a></li>
-<li><a href="https://groups.google.com/forum/#!msg/mechanical-sympathy/icNZJejUHfE/BfDekfBEs_sJ">Coordinated Omission</a></li>
-<li><a href="https://docs.oracle.com/javacomponents/jmc-5-5/jfr-runtime-guide/about.htm#JFRRT107">Java Flight Recorder</a></li>
-<li><a href="http://blog.ragozin.info/2012/10/safepoints-in-hotspot-jvm.html">Safepoints in HotSpot JVM</a></li>
-<li><a href="https://www.hascode.com/2017/10/java-mission-control-jmc-and-flight-recorder-jfr">Java Mission Control (JMC) and Flight Recorder (JFR)</a></li>
-<li><a href="http://openjdk.java.net/projects/code-tools/jmh">JMH</a> and <a href="https://github.com/ktoso/sbt-jmh">sbt-jmh</a></li>
-<li><a href="https://www.journaldev.com/1352/what-is-jmx-mbean-jconsole-tutorial">What is JMX?</a> and <a href="https://jolokia.org">Jolokia</a></li>
-</ul>
-<p><strong>Latency</strong> describes the amount of time that it takes for an observed process to be completed</p>
-<p><strong>Throughput</strong> defines the observed rate at which a process is completed</p>
-<p>A <strong>bottleneck</strong> refers to the slowest part of the system</p>
-<p>A common mistake is to rely on <em>averages</em> to measure the performance of a system because it is a lossy summary statistic.
-A <strong>percentile</strong> is a measurement indicating the value below which a given percentage of observations in a group of observations fall</p>
-<p><strong>Benchmarks</strong> are a black-box kind of measurement. Benchmarks assess a whole system's performance by submitting various kinds of load as input and measuring latency and throughput as system outputs</p>
-<p>A <strong>profiler</strong> enables white-box testing to help you identify bottlenecks by capturing the execution time and resource consumption of each part of your
-program. Most profilers instrument the code under observation, either at compile time or runtime, to inject counters and profiling components. This instrumentation imposes a runtime cost that degrades system throughput and latency</p>
-<p>The <strong>coordinated omission problem</strong> happen we you measure the time required to process a command without taking into account the time the command had to wait to be processed</p>
-<p><strong>Java Flight Recorder (JFR)</strong> is a tool for collecting, diagnosing, and profiling data about a running Java application. It is integrated into the Java Virtual Machine and causes almost no performance overhead and is able to access data outside of <strong>JVM safepoints</strong>. Safepoints are necessary
-to coordinate global JVM activities, including stop-the-world garbage collection</p>
-<p><strong>Java Mission Control (JMC)</strong> allows to connect to a running Java application via JMX and capture runtime information from the Flight Recorder (JFR), executing commands via JMX or displaying reports from JFR sessions</p>
-<p>The <strong>Just-In-Time (JIT)</strong> compiler is a component of the Java Runtime Environment that improves the performance of Java applications at run time. Java programs consists of classes, which contain platform neutral bytecode that can be interpreted by a JVM on many different computer architectures.
-At run time, the JVM loads the class files, determines the semantics of each individual bytecode, and performs the appropriate computation.
-The additional processor and memory usage during interpretation means that a Java application performs more slowly than a native application.
-The JIT compiler helps improve the performance of Java programs by compiling bytecode into native machine code at run time</p>
-<h2 id="scala">Scala</h2>
-<pre><code># compiles
-scalac miscellaneous/scala-example.scala -d miscellaneous/
-
-# lists compiler phases
-scalac -Xshow-phases
-
-# prints for-comprehensions desugared
-scalac -Xprint:parse miscellaneous/scala-example.scala -d miscellaneous/
-
-# prints all phases
-scalac -Xprint:all miscellaneous/scala-example.scala -d miscellaneous/
-
-# shows bytecode
-javap -v miscellaneous/Example$.class
-</code></pre>
-
-<p><br></p>
+<p>Moved to <a href="https://niqdev.github.io/scala-fp" target="_blank">scala-fp</a></p>
               
             </div>
           </div>
