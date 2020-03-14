@@ -76,7 +76,7 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#applications">Applications</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#useful-links">Useful links</a>
+    <li class="toctree-l2"><a class="reference internal" href="#other-resources">Other resources</a>
     </li>
     </ul>
                     </li>
@@ -164,7 +164,11 @@
 <p>Resources</p>
 <ul>
 <li><a href="https://amzn.to/2lHW1cB">How Linux Works</a> (2014)(2nd) by Brian Ward (Book)</li>
-<li><a href="https://www.kernel.org/doc/Documentation/">Kernel documentation</a></li>
+<li><a href="https://nostarch.com/networkprotocols">Attacking Network Protocols</a> (2018) by James Forshaw (Book)</li>
+<li><a href="https://nostarch.com/packetanalysis3">Practical Packet Analysis</a> (2017)(3rd) by Chris Sanders (Book)</li>
+<li><a href="https://nostarch.com/tcpip.htm">The TCP/IP Guide</a> (2005) by Charles M. Kozierok</li>
+<li><a href="https://www.kernel.org/doc/Documentation">Kernel documentation</a></li>
+<li><a href="http://www.brendangregg.com/linuxperf.html">Linux Performance</a></li>
 </ul>
 <h3 id="useful-commands">Useful commands</h3>
 <pre><code class="bash"># create nested directories
@@ -444,8 +448,12 @@ lsof /dev
 # print all the system calls that a process makes
 strace cat /dev/null
 strace uptime
+strace -e trace=network,read,write bc
 # track shared library calls
 ltrace ls /
+
+# allows to set system-wide probes on special trace providers e.g. system calls
+dtrace
 
 # CPU usage
 /usr/bin/time ls
@@ -481,6 +489,10 @@ iostat -mt 2
 dstat
 </code></pre>
 
+<p>Resources</p>
+<ul>
+<li><a href="http://myaut.github.io/dtrace-stap-book">Dynamic Tracing with DTrace &amp; SystemTap</a></li>
+</ul>
 <h3 id="network">Network</h3>
 <pre><code class="bash"># active network interfaces
 ifconfig
@@ -525,6 +537,9 @@ cat /etc/nsswitch.conf
 # static IP
 /etc/network/interfaces
 
+# list of assigned port numbers
+/etc/services
+
 # -t Prints TCP port information
 # -u Prints UDP port information
 # -l Prints listening ports
@@ -563,6 +578,9 @@ http ipv6.icanhazip.com
 
 # Linux kernel does not automatically move packets from one subnet to another
 # enable temporary IP forwarding in the router's kernel
+sysctl net.ipv4.conf.all.forwarding=1
+sysctl net.ipv6.conf.all.forwarding=1
+# on macOS
 sysctl -w net.ipv4.ip_forward
 # change permanent configs upon reboot
 vim /etc/sysctl.conf
@@ -592,6 +610,14 @@ iptables -I INPUT -s ALLOWED_IP -j ACCEPT
 iptables -I INPUT RULE_NUMBER -s ALLOWED_IP -j ACCEPT
 # delete rule #number in chain
 iptables -D INPUT RULE_NUMBER
+# flush any existing NAT rules
+iptables -t nat -F
+# source NAT (SNAT) or masquerading: changes the IP source address information
+iptables -t nat -A POSTROUTING -o INTNAME -j SNAT --to INTIP
+iptables -t nat -A POSTROUTING -o INTNAME -j MASQUERADE
+# destination NAT (DNAT): changes the destination address
+iptables -t nat -A PREROUTING -d ORIGIP -j DNAT --to-destination NEWIP
+iptables -t nat -A PREROUTING -p PROTO -d ORIGIP --dport ORIGPORT -j DNAT --to-destination NEWIP:NEWPORT
 
 # show ARP kernel cache
 arp -n
@@ -605,6 +631,29 @@ iw dev NETWORK_INTERFACE link
 wpa_supplicant
 </code></pre>
 
+<p>Active network traffic capture</p>
+<ul>
+<li>Port-Forwarding proxy</li>
+<li>SOCKS proxy (preferred)</li>
+</ul>
+<pre><code class="bash"># specify a SOCKS proxy for any TCP connection
+java –DsocksProxyHost=localhost –DsocksProxyPort=1080 XXX
+</code></pre>
+
+<ul>
+<li>HTTP forwarding proxy (client side)</li>
+<li>HTTP reverse proxy (server side)</li>
+</ul>
+<p>Resources</p>
+<ul>
+<li><a href="https://gist.github.com/niqdev/1ab727c3c01de2993cad070c04ba8b47">Subnetting</a></li>
+<li><a href="https://www.monkey.org/~dugsong/dsniff">dsniff</a></li>
+<li><a href="https://netfilter.org/index.html">Netfilter</a></li>
+<li><a href="https://www.inet.no/dante">Dante - A free SOCKS server</a></li>
+<li><a href="https://securesocketfunneling.github.io/ssf">Secure Socket Funneling</a></li>
+<li><a href="https://www.digitalocean.com/community/tutorials/iptables-essentials-common-firewall-rules-and-commands">Iptables Essentials</a></li>
+<li><a href="https://unixia.wordpress.com/2015/12/16/iptables-vs-nftables">iptables vs nftables</a></li>
+</ul>
 <h3 id="applications">Applications</h3>
 <pre><code class="bash"># old insecure
 telnet www.wikipedia.org 80
@@ -647,25 +696,39 @@ nmap -Pn IP_ADDRESS
 # system calls
 man recv
 man send
+
+# DHCP is designed to run on IP networks to distribute network configuration
+#   information to nodes automatically:
+#   IP address, default gateway, routing tables, default DNS servers, etc...
+# ARP finds the Ethernet address for a given IP address
+# * DHCP Spoofing
+# * ARP Poisoning
+ettercap -G
 </code></pre>
 
-<h3 id="useful-links">Useful links</h3>
+<p>Resources</p>
 <ul>
-<li><a href="https://gist.github.com/niqdev/1ab727c3c01de2993cad070c04ba8b47">Subnetting</a></li>
+<li><a href="https://www.wireshark.org">Wireshark</a></li>
+<li><a href="https://www.tcpdump.org">tcpdump</a></li>
+<li><a href="https://hackertarget.com/tshark-tutorial-and-filter-examples">tshark</a></li>
+<li><a href="https://nmap.org">Nmap</a></li>
+<li><a href="https://www.ettercap-project.org">Ettercap</a></li>
+<li><a href="http://www.iana.org/assignments/port-numbers">Service Name and Transport Protocol Port Number Registry</a></li>
+<li>TODO add more <a href="https://1modm.github.io/documentation/tcpdump.html">examples</a></li>
+</ul>
+<h3 id="other-resources">Other resources</h3>
+<ul>
 <li><a href="https://openwrt.org">OpenWrt</a></li>
 <li><a href="https://www.busybox.net">BusyBox</a></li>
-<li><a href="https://netfilter.org/index.html">Netfilter</a></li>
-<li><a href="https://www.digitalocean.com/community/tutorials/iptables-essentials-common-firewall-rules-and-commands">Iptables Essentials</a></li>
-<li><a href="https://unixia.wordpress.com/2015/12/16/iptables-vs-nftables">iptables vs nftables</a></li>
+<li><a href="https://tools.ietf.org/html/rfc5280">X.509 RFC</a></li>
+<li><a href="https://www.madboa.com/geek/openssl">OpenSSL Command-Line HOWTO</a></li>
+<li><a href="https://www.dwheeler.com/program-library">Program Library HOWTO</a></li>
 <li><a href="http://www.shorewall.net">Shorewall</a></li>
-<li><a href="https://nmap.org">Nmap</a></li>
-<li><a href="https://hackertarget.com/tshark-tutorial-and-filter-examples">tshark</a></li>
 <li><a href="http://www.postfix.org">Postfix</a></li>
 <li><a href="https://httpie.org">HTTPie</a></li>
 <li><a href="https://stedolan.github.io/jq">jq</a></li>
-<li><a href="http://www.brendangregg.com/linuxperf.html">Linux Performance</a></li>
+<li><a href="https://lynx.browser.org">Lynx</a></li>
 <li><a href="https://www.samba.org">Samba</a></li>
-<li><a href="https://www.dwheeler.com/program-library">Program Library HOWTO</a></li>
 </ul>
 <p><br></p>
               
